@@ -4,14 +4,16 @@ import { push } from "connected-react-router";
 
 import * as actions from "../../store/actions";
 import "./Login.scss";
+import { handleLogin } from "../../services/userService";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      username: "huyhoangminh@gmail.com",
+      password: "1234",
       isShowPassword: false,
+      errMessage: null,
     };
   }
 
@@ -21,8 +23,25 @@ class Login extends Component {
   handleOnChangePassword = (event) => {
     this.setState({ password: event.target.value });
   };
-  handleLogin = () => {
-    console.log("Login", this.state);
+  handleLogin = async () => {
+    const { userLoginSuccess } = this.props;
+    this.setState({ errMessage: null });
+    try {
+      let rs = await handleLogin(this.state.username, this.state.password);
+      if (rs && rs.errCode) {
+        this.setState({ errMessage: rs.message });
+      }
+      if (rs && !rs.errCode) {
+        this.props.userLoginSuccess(rs.data);
+        console.log("login success");
+      }
+    } catch (e) {
+      if (e.response) {
+        if (e.response.data)
+          this.setState({ errMessage: e.response.data.message });
+      }
+      //console.log(e);
+    }
   };
 
   handleShowHidePassword = () => {
@@ -66,6 +85,9 @@ class Login extends Component {
                 </span>
               </div>
             </div>
+            <div className="clo-12" style={{ color: "red" }}>
+              {this.state.errMessage}
+            </div>
             <div className="col-12">
               <button
                 className="btn-login"
@@ -103,9 +125,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
