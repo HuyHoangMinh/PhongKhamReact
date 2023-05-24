@@ -63,7 +63,6 @@ class UserManage extends Component {
         <div className="user-table my-4 mx-4">
           <table id="customers">
             <tr>
-              <th></th>
               <th>Email</th>
               <th>First name</th>
               <th>Last name</th>
@@ -76,7 +75,6 @@ class UserManage extends Component {
                 return (
                   <>
                     <tr>
-                      <td>{item.id}</td>
                       <td>{item.email}</td>
                       <td>{item.firstName}</td>
                       <td>{item.lastName}</td>
