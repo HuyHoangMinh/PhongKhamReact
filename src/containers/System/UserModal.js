@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { emitter } from "../../utils/emitter";
+const initialState = {
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  address: "",
+};
 class UserModal extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +19,15 @@ class UserModal extends Component {
       lastName: "",
       address: "",
     };
+    this.listenEmitter();
+  }
+
+  listenEmitter() {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      this.setState({
+        ...initialState,
+      });
+    });
   }
   toggle = () => {
     this.props.toggleFromParent();
@@ -30,7 +47,6 @@ class UserModal extends Component {
         break;
       }
     }
-
     return isValid;
   };
   handleAddNew = (isCloseModal) => {

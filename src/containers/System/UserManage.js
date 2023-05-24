@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAllUsers, createNewUserService } from "../../services/userService";
+import {
+  getAllUsers,
+  createNewUserService,
+  deleteUserService,
+} from "../../services/userService";
 import "./UserManage.scss";
 import UserModal from "./UserModal";
+import { emitter } from "../../utils/emitter";
 class UserManage extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +32,19 @@ class UserManage extends Component {
   toggleUserModal = () => {
     this.setState({ isOpenModalUser: !this.state.isOpenModalUser });
   };
-
+  handleDeleteUser = async (user) => {
+    //console.log("data:", user);
+    try {
+      let response = await deleteUserService(user.id);
+      if (response && response.errMsg > "") {
+        alert(response.errMsg);
+      } else if (response && !response.error) {
+        await this.getAllUsersFromReact();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   createNewUser = async (data, isCloseModal) => {
     try {
       let response = await createNewUserService(data);
@@ -37,6 +54,7 @@ class UserManage extends Component {
       } else if (response && !response.error) {
         await this.getAllUsersFromReact();
         this.setState({ isOpenModalUser: !isCloseModal });
+        emitter.emit("EVENT_CLEAR_MODAL_DATA", { id: "your emitter id" });
       }
     } catch (error) {
       console.error(error);
@@ -83,7 +101,10 @@ class UserManage extends Component {
                         <button className="btn-edit">
                           <i className="fa fa-pencil-alt"></i>
                         </button>
-                        <button className="btn-delete">
+                        <button
+                          className="btn-delete"
+                          onClick={() => this.handleDeleteUser(item)}
+                        >
                           <i className="fa fa-trash"></i>
                         </button>
                       </td>
