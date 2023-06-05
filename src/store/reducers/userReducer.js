@@ -3,6 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initialState = {
   isLoggedIn: false,
   userInfo: null,
+  language: actionTypes.language,
 };
 
 const appReducer = (state = initialState, action) => {

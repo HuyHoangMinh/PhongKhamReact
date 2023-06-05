@@ -1,4 +1,10 @@
 {
+    "homepage": {
+        "speciality": "Chuyên khoa",
+        "search-doctor": "Tìm bác sĩ",
+        "health-facilities": "Cơ sở y tế",
+        "choose-hopital": " Chọn bệnh viện"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",
@@ -31,7 +37,7 @@
             "system-administrator": {
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
+                "user-redux": "Quản lý người sử dụng bằng redux",
                 "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
             },
             "system-parameter": {
@@ -66,7 +72,7 @@
             },
             "sure-delete-user": "Bạn có chắc chắn muốn xóa người dùng này?"
         },
-        "product-manage": {
+        "user-redux": {
             "fail-to-load-foprtype": "Không thể tải về danh sách gói",
             "prid": "Mã gói",
             "prname": "Tên gói",

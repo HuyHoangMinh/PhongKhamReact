@@ -63,58 +63,60 @@ class UserManage extends Component {
   render() {
     let data = this.state.arrUsers;
     return (
-      <div className="user-container">
-        <UserModal
-          isOpen={this.state.isOpenModalUser}
-          toggleFromParent={this.toggleUserModal}
-          createNewUser={this.createNewUser}
-        />
-        <div className="title text-center">Manager Users</div>
-        <div className="mx-4">
-          <button
-            className="btn btn-primary px-3"
-            onClick={() => this.handleAddNewUser()}
-          >
-            <i className="fas fa-plus"> Add new user</i>
-          </button>
-        </div>
-        <div className="user-table my-4 mx-4">
-          <table id="customers">
-            <tr>
-              <th>Email</th>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Address</th>
-              <th>Action</th>
-            </tr>
+      <React.Fragment>
+        <div className="user-container">
+          <UserModal
+            isOpen={this.state.isOpenModalUser}
+            toggleFromParent={this.toggleUserModal}
+            createNewUser={this.createNewUser}
+          />
+          <div className="title text-center">Manager Users</div>
+          <div className="mx-4">
+            <button
+              className="btn btn-primary px-3"
+              onClick={() => this.handleAddNewUser()}
+            >
+              <i className="fas fa-plus"> Add new user</i>
+            </button>
+          </div>
+          <div className="user-table my-4 mx-4">
+            <table id="customers">
+              <tr>
+                <th>Email</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
 
-            {data &&
-              data.map((item, index) => {
-                return (
-                  <>
-                    <tr>
-                      <td>{item.email}</td>
-                      <td>{item.firstName}</td>
-                      <td>{item.lastName}</td>
-                      <td>{item.address}</td>
-                      <td className="">
-                        <button className="btn-edit">
-                          <i className="fa fa-pencil-alt"></i>
-                        </button>
-                        <button
-                          className="btn-delete"
-                          onClick={() => this.handleDeleteUser(item)}
-                        >
-                          <i className="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
-          </table>
+              {data &&
+                data.map((item, index) => {
+                  return (
+                    <>
+                      <tr>
+                        <td>{item.email}</td>
+                        <td>{item.firstName}</td>
+                        <td>{item.lastName}</td>
+                        <td>{item.address}</td>
+                        <td className="">
+                          <button className="btn-edit">
+                            <i className="fa fa-pencil-alt"></i>
+                          </button>
+                          <button
+                            className="btn-delete"
+                            onClick={() => this.handleDeleteUser(item)}
+                          >
+                            <i className="fa fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+            </table>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

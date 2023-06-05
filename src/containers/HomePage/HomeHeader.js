@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
+import { FormattedMessage } from "react-intl";
+import { LANGUAGES } from "../../utils/constant";
+import { setChangeLanguageApp } from "../../store/actions/appActions";
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    this.props.ChangeLanguageApp(language);
+  };
   render() {
+    console.log("Check props : ", this.props);
+    let language = this.props.language;
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -14,15 +22,23 @@ class HomeHeader extends Component {
             <div className="center-content">
               <div className="child-content">
                 <div>
-                  <b>Chuyên khoa</b>
+                  <b>
+                    <FormattedMessage id="homepage.speciality" />
+                  </b>
                 </div>
-                <div className="sub-title">Tìm bác sĩ</div>
+                <div className="sub-title">
+                  <FormattedMessage id="homepage.search-doctor" />
+                </div>
               </div>
               <div className="child-content">
                 <div>
-                  <b>Cơ sở y tế</b>
+                  <b>
+                    <FormattedMessage id="homepage.health-facilities" />
+                  </b>
                 </div>
-                <div className="sub-title">Chọn bệnh viện</div>
+                <div className="sub-title">
+                  <FormattedMessage id="homepage.choose-hopital" />
+                </div>
               </div>
               <div className="child-content">
                 <div>
@@ -41,7 +57,28 @@ class HomeHeader extends Component {
               <div className="support">
                 <i className="fas fa-question-circle"> Hỗ trợ</i>
               </div>
-              <div className="flag">VN</div>
+              <div
+                className={
+                  language === LANGUAGES.VI
+                    ? "language-vi active"
+                    : "language-vi"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
+                  VN
+                </span>
+              </div>
+              <div
+                className={
+                  language === LANGUAGES.EN
+                    ? "language-en active"
+                    : "language-en"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
+                  EN
+                </span>
+              </div>
             </div>
           </div>
           <div className="home-image-content"></div>
@@ -83,7 +120,7 @@ class HomeHeader extends Component {
                 <div className="option-child-text">Sức khỏe tinh thần</div>
               </div>
               <div className="option-child">
-                <i class="fas fa-briefcase-medical"></i>
+                <i className="fas fa-briefcase-medical"></i>
                 <div className="option-child-text">Khám nha khoa</div>
               </div>
               <div className="option-child">
@@ -95,7 +132,7 @@ class HomeHeader extends Component {
                 <div className="option-child-text">Sản phẩm y tế</div>
               </div>
               <div className="option-child">
-                <i class="fas fa-tasks"></i>
+                <i className="fas fa-tasks"></i>
                 <div className="option-child-text">Bài text sức khỏe</div>
               </div>
             </div>
@@ -109,11 +146,16 @@ class HomeHeader extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    ChangeLanguageApp: (language) => {
+      dispatch(setChangeLanguageApp(language));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

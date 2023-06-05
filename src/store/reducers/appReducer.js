@@ -18,6 +18,11 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_LANGUAGE:
+      return {
+        ...state,
+        language: action.language,
+      };
     case actionTypes.APP_START_UP_COMPLETE:
       return {
         ...state,
