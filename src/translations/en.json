@@ -1,5 +1,6 @@
 {
     "homepage": {
+        "welcome": "Welcome",
         "speciality": "Speciality",
         "search-doctor": "Search doctor",
         "health-facilities": "Health facilities",
@@ -121,5 +122,19 @@
             "remove-assign-fail": "Fail to unassign service package to customer",
             "sure-delete-assign": "Are you sure to unassign service package to customer?"
         }
+    },
+    "manage-user": {
+        "title": "Add new user",
+        "email": "email",
+        "password": "password",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone",
+        "address": "Address",
+        "gender": "Gender",
+        "position": "Position",
+        "role": "Role",
+        "imageUser": "Avatar",
+        "save": "Save"
     }
 }

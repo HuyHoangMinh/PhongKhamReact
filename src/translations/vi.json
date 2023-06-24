@@ -1,5 +1,6 @@
 {
     "homepage": {
+        "welcome": "Xin chào",
         "speciality": "Chuyên khoa",
         "search-doctor": "Tìm bác sĩ",
         "health-facilities": "Cơ sở y tế",
@@ -122,5 +123,19 @@
             "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
             "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
+    },
+    "manage-user": {
+        "title": "Thêm mới người dùng",
+        "email": "Hộp thư",
+        "password": "Mật khẩu",
+        "firstName": "Tên",
+        "lastName": "Họ",
+        "phone": "Điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "position": "Chức vụ",
+        "role": "Nhóm quyền",
+        "imageUser": "Ảnh đại diện",
+        "save": "Lưu"
     }
 }

@@ -8,13 +8,16 @@
   color: $common-text-color;
   height: 40px;
   position: relative;
-  .languages {
+  .header-menu-right {
     margin-right: 20px;
     width: 25%;
     display: flex;
     align-items: center;
     justify-content: right;
     padding: 0 10px;
+    .welcome {
+      padding: 0 10px;
+    }
     .language-vi {
       cursor: pointer;
       padding: 0 10px;

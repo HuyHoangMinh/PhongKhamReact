@@ -9,7 +9,6 @@ class HomeHeader extends Component {
     this.props.ChangeLanguageApp(language);
   };
   render() {
-    console.log("Check props : ", this.props);
     let language = this.props.language;
     return (
       <React.Fragment>
