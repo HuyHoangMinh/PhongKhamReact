@@ -48,7 +48,7 @@ class UserManage extends Component {
   createNewUser = async (data, isCloseModal) => {
     try {
       let response = await createNewUserService(data);
-      console.log(response);
+      //console.log(response);
       if (response && response.errMsg > "") {
         alert(response.errMsg);
       } else if (response && !response.error) {
@@ -102,10 +102,7 @@ class UserManage extends Component {
                           <button className="btn-edit">
                             <i className="fa fa-pencil-alt"></i>
                           </button>
-                          <button
-                            className="btn-delete"
-                            onClick={() => this.handleDeleteUser(item)}
-                          >
+                          <button className="btn-delete">
                             <i className="fa fa-trash"></i>
                           </button>
                         </td>

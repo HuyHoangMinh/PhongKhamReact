@@ -135,6 +135,7 @@
         "position": "Position",
         "role": "Role",
         "imageUser": "Avatar",
-        "save": "Save"
+        "save": "Save",
+        "update": "Update"
     }
 }

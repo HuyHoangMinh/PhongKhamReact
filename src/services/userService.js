@@ -9,6 +9,10 @@ const createNewUserService = (data) => {
   //console.log(data);
   return axios.post(`/api/create-new-user`, data);
 };
+const updateUserService = (data) => {
+  // console.log(data);
+  return axios.put(`/api/update-user`, data);
+};
 const deleteUserService = (userId) => {
   return axios.delete(`/api/delete-user`, {
     data: {
@@ -19,11 +23,15 @@ const deleteUserService = (userId) => {
 const getAllCodes = (inputType) => {
   return axios.get(`/api/getAllCode?type=${inputType}`);
 };
-
+const getAllDoctors = (inputLimit) => {
+  return axios.get(`/api/getAllDoctor?limit=${inputLimit}`);
+};
 export {
   handleLogin,
   getAllUsers,
   createNewUserService,
+  updateUserService,
   deleteUserService,
   getAllCodes,
+  getAllDoctors,
 };
