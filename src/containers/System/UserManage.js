@@ -81,19 +81,19 @@ class UserManage extends Component {
           </div>
           <div className="user-table my-4 mx-4">
             <table id="customers">
-              <tr>
-                <th>Email</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Address</th>
-                <th>Action</th>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>Email</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Address</th>
+                  <th>Action</th>
+                </tr>
 
-              {data &&
-                data.map((item, index) => {
-                  return (
-                    <>
-                      <tr>
+                {data &&
+                  data.map((item, index) => {
+                    return (
+                      <tr key={index}>
                         <td>{item.email}</td>
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
@@ -107,9 +107,9 @@ class UserManage extends Component {
                           </button>
                         </td>
                       </tr>
-                    </>
-                  );
-                })}
+                    );
+                  })}
+              </tbody>
             </table>
           </div>
         </div>

@@ -38,7 +38,8 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "user-redux": "User Redux"
+                "user-redux": "User Redux",
+                "manage-doctor": "Manage Doctor"
             },
             "system-parameter": {
                 "header": "System-parameter"

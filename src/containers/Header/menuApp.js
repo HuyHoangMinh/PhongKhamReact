@@ -14,6 +14,10 @@ export const adminMenu = [
             name: "menu.system.system-administrator.user-redux",
             link: "/system/user-redux",
           },
+          {
+            name: "menu.system.system-administrator.manage-doctor",
+            link: "/system/manage-doctor",
+          },
         ],
       },
       // { name: 'menu.system.system-parameter.header', link: '/system/system-parameter' },

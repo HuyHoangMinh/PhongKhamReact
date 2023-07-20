@@ -24,7 +24,8 @@ const getAllCodes = (inputType) => {
   return axios.get(`/api/getAllCode?type=${inputType}`);
 };
 const getAllDoctors = (inputLimit) => {
-  return axios.get(`/api/getAllDoctor?limit=${inputLimit}`);
+  let api = `/api/getAllDoctor?limit=${inputLimit}`;
+  return axios.get(api);
 };
 export {
   handleLogin,

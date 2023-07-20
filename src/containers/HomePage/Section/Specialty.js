@@ -4,16 +4,36 @@ import "./Specialty.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ImgTest from "../../../assets/images/113353-da-lieu-tham-my.jpg";
-
+import * as actions from "../../../store/actions";
+import { LANGUAGES } from "../../../utils/constant";
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctor: [],
+    };
+  }
+  async componentDidMount() {
+    this.props.getAllDoctorRedux();
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.listDoctor !== this.props.listDoctor) {
+      let arrDoctorRedux = this.props.listDoctor;
+      this.setState({
+        arrDoctor: arrDoctorRedux,
+      });
+    }
+  }
+
   render() {
+    let data = this.state.arrDoctor;
+    let language = this.props.language;
     let settings = {
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToScroll: 1,
-      slidesToShow: 4,
+      slidesToShow: 5,
       //centerMode: true,
       //autoplay: true,
       //autoplaySpeed: 2000,
@@ -22,34 +42,32 @@ class Specialty extends Component {
       <div className="section-specialty">
         <div className="specialty-container">
           <div className="specialty-header">
-            <h2>CHUYÊN KHOA PHỔ BIẾN</h2>
+            <h2>Bác sỹ nổi bật trong tuần</h2>
           </div>
           <div className="specialty-body">
             <Slider {...settings}>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 1</div>
-              </div>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 2</div>
-              </div>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 3</div>
-              </div>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 4</div>
-              </div>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 5</div>
-              </div>
-              <div className="specialty-customize">
-                <div className="bg-image"></div>
-                <div className="bg-text">Chuyen khoa 6</div>
-              </div>
+              {data &&
+                data.length > 0 &&
+                data.map((item, index) => {
+                  let imageBase64 = "";
+                  if (item.avatar)
+                    imageBase64 = new Buffer(item.avatar, "base64").toString(
+                      "binary"
+                    );
+                  let nameVI = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                  let nameEN = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                  return (
+                    <div className="specialty-customize" key={item.id}>
+                      <div
+                        className="bg-image"
+                        style={{ backgroundImage: `url(${imageBase64})` }}
+                      ></div>
+                      <div className="bg-text">
+                        {language === LANGUAGES.VI ? nameVI : nameEN}
+                      </div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>
@@ -60,12 +78,16 @@ class Specialty extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    language: state.app.language,
     isLoggedIn: state.user.isLoggedIn,
+    listDoctor: state.admin.doctors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getAllDoctorRedux: () => dispatch(actions.fetchAllDoctorStart()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
